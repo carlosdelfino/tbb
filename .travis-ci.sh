@@ -66,4 +66,6 @@ fi
 echo "Running tests"
 echo "Environment: $(uname -a)"
 
-${TEST_COMMAND}
+CXXFLAGS="-mno-rtm" cmake -DCMAKE_CXX_COMPILER=g++-4.9 .
+make -j2
+make tests -j2 && ctest -j2 --output-on-failure --timeout 500
